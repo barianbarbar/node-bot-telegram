@@ -21,25 +21,4 @@ const getConnection = async () => {
   }
 };
 
-const hitToDB = async () => {
-  try {
-    const pool = await getConnection();
-    await pool.request()
-    .input("jenis_layanan", sql.VarChar, "Hardware")
-    .input("divisi", sql.VarChar, "SS")
-    .input("nama_peminta", "Radea")
-    .input("tanggal", sql.Date, "8/14/2022")
-    .input("waktu", sql.VarChar, "8:35 - 8:46")
-    .input("layanan", sql.Text, "Perbaikan PC")
-    .input("status", sql.VarChar, "Selesai")
-    .input("petugas", sql.VarChar, "Radea")
-    .query("INSERT INTO data_permintaan VALUES (@jenis_layanan, @divisi, @nama_peminta, @tanggal, @waktu, @layanan, @status, @petugas)");
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-hitToDB();
-
-
 module.exports = { getConnection, sql }

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Edit Data</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/css/styles.css" rel="stylesheet">
+  </head>
+  <body>
+    <h1 class="title">form edit data</h1>
+    <div class="card">
+        <% const getDate = (datetime) => { %> 
+        <% const date = new Date(datetime); %> 
+        <% const options = { year: 'numeric', month: 'numeric', day: 'numeric' }; %> 
+        <% return date.toLocaleString('en-GB', options) %> 
+        <% } %> 
+        <% data.forEach(dt => { %>
+            <form action="/edit/<%= dt.id %>" method="post">
+                <div class="input-group">
+                    <label for="jenis">Jenis Request</label>
+                    <input id="jenis" name="jenis" type="text" value="<%= dt.jenis_layanan %>">
+                </div>
+                <div class="input-group">
+                    <label for="divisi">Dept dan No Unit</label>
+                    <input id="divisi" name="divisi" type="text" value="<%= dt.divisi %>">
+                </div>
+                <div class="input-group">
+                    <label for="requestby">Request By</label>
+                    <input id="requestby" name="requestby" type="text" value="<%= dt.nama_peminta %>">
+                </div>
+                <div class="input-group">
+                    <label for="tanggal">Tanggal</label>
+                    <% const dataTanggal = getDate(dt.tanggal) %> 
+                    <% const reversedTanggal = dataTanggal.split("/").reverse().join("-") %> 
+                    <input id="tanggal" name="tanggal" type="date" value="<%= reversedTanggal %>">
+                </div>
+                <div class="input-group">
+                    <label for="waktu">Waktu</label>
+                    <input id="waktu" name="waktu" type="text" value="<%= dt.waktu %>">
+                </div>
+                <div class="input-group">
+                    <label for="service">Service</label>
+                    <input id="service" name="service" type="text" value="<%= dt.layanan %>">
+                </div>
+                <div class="input-group">
+                    <label for="keterangan">Keterangan</label>
+                    <input id="keterangan" name="keterangan" type="text" value="<%= dt.status %>">
+                </div>
+                <div class="input-group">
+                    <label for="staff">Staff</label>
+                    <input id="staff" name="staff" type="text" value="<%= dt.petugas %>">
+                </div>
+                <button type="submit" class="btn btn-save">Save</button>
+            </form>
+        <% }) %>
+    </div>
+  </body>
+</html>

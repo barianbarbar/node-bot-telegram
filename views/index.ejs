@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Daftar Data Helpdesk</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/css/styles.css" rel="stylesheet">
+  </head>
+  <body>
+    <h1 class="title">Daftar Data Helpdesk</h1>
+    <a href="/excel" class="btn-export-to-excel">Export To Excel</a>
+    <table class="table-data">
+      <thead>
+        <tr>
+          <th>Jenis Request</th>
+          <th>Dept dan No Unit</th>
+          <th>Request By</th>
+          <th>Tanggal</th>
+          <th>Waktu</th>
+          <th>Service</th>
+          <th>Keterangan</th>
+          <th>Staff</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% const getDate = (datetime) => { %> 
+        <% const date = new Date(datetime); %> 
+        <% const options = { year: 'numeric', month: 'numeric', day: 'numeric' }; %> 
+        <% return date.toLocaleString('en-GB', options) %> 
+        <% } %> 
+        <% datas.forEach(data => { %>
+          <tr>
+            <td><%= data.jenis_layanan %> </td>
+            <td><%= data.divisi %></td>
+            <td><%= data.nama_peminta %></td>
+            <td><%= getDate(data.tanggal) %></td>
+            <td><%= data.waktu %></td>
+            <td><%= data.layanan %></td>
+            <td><%= data.status %></td>
+            <td><%= data.petugas %></td>
+            <td>
+              <a href="/edit/<%= data.id %>">edit</a>
+              <a href="/delete/<%= data.id %>" onclick="return confirm('Benar anda akan menghapus data?')">delete</a>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </body>
+</html>

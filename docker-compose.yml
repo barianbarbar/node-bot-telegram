@@ -8,7 +8,7 @@ services:
     depends_on:
       - db
   db:
-    image: "dbafromthecold/sqlserver2012dev:sp4"
+    image: "microsoft/mssql-server-linux"
     ports: 
       - 1433:1433
     environment:

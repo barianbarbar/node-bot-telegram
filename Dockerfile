@@ -1,11 +1,13 @@
-FROM node:12-alpine
+FROM node:16
 
 WORKDIR /app
 
-COPY ["package.json", "package-lock.json", "./"]
+COPY package.json /app
 
 RUN npm install
 
-COPY . .
+COPY . /app
 
 CMD ["node", "app.js", "bot-telegram.js"]
+
+EXPOSE 3000

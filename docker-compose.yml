@@ -1,4 +1,4 @@
-version: "1.0"
+version: "3.7"
 services:
   app:
     build: .
@@ -15,4 +15,3 @@ services:
       environment:
         SA_PASSWORD: "12341234"
         ACCEPT_EULA: "Y"
-        

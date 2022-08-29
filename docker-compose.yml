@@ -1,0 +1,18 @@
+version: "1.0"
+services:
+  app:
+    build: .
+    ports:
+      - 3000:3000
+    working_dir: /app
+    depends_on:
+      - dbsqlserver2012
+
+    dbsqlserver2012:
+      image: "mcr.microsoft.com/mssql/server:2012-latest"
+      ports: 
+        - 1433:1433
+      environment:
+        SA_PASSWORD: "12341234"
+        ACCEPT_EULA: "Y"
+        
